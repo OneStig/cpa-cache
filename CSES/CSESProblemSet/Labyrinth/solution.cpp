@@ -84,6 +84,14 @@ int main() {
 		if (found) {
 			break;
 		}
+
+		cout << endl;
+		for (int r = 0; r < n; r++) {
+			for (int c = 0; c < m; c++) {
+				cout << grid[r][c];
+			}
+			cout << endl;
+		}
 	}
 
 	if (!found) {
