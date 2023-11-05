@@ -10,7 +10,7 @@ int main() {
 		int q;
 		cin >> q;
 
-
+		
 	}
 }
 
