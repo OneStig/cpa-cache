@@ -8,24 +8,24 @@ int main() {
 	int n;
 	cin >> n;
 
-	vector<vector<bool> > grid(n);
-	vector<vector<long long> > g(n);
+	vector<bitset<3000> > grid(n);
 
 	for (int i = 0; i < n; i++) {
-		grid[i].resize(n);
-		g.resize((n + N - 1) / N);
-
 		string bstring;
 		cin >> bstring;
 
-		long long cur = 0;
-		int shifts = 0;
 		for (int j = 0; j < n; j++) {
 			grid[i][j] = bstring[j] - '0';
-
-			if (shifts == N) {
-				g[i][]
-			}
 		}
 	}
+
+	long long ans = 0;
+	for (int i = 0; i < n; i++) {
+		for (int j = i + 1; j < n; j++) {
+			int count = (grid[i] & grid[j]).count();
+			ans += (count * (count - 1)) / 2;
+		}
+	}
+
+	cout << ans << endl;
 }
