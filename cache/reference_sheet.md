@@ -1,20 +1,22 @@
 CPA Cache Reference Sheet
 =========================
+<p style="text-align: center;">Text_content</p>
+[github.com/OneStig/cpa-cache](https://github.com/OneStig/cpa-cache/)
 
 **Table of Contents**
-- [1. geometry](#1-geometry)
-- [2. graphs](#2-graphs)
-	- [2.1 Disjoint Set Union](#21-disjoint-set-union)
-- [3. range](#3-range)
-	- [3.1 Segment Tree](#31-segment-tree)
-## 1. geometry
 
-## 2. graphs
+  
+- [1. graphs](#1-graphs)  
+	- [1.1 Disjoint Set Union](#11-disjoint-set-union)  
+- [2. range](#2-range)  
+	- [2.1 Segment Tree](#21-segment-tree)  
 
-#### 2.1 Disjoint Set Union
+  
+## 1. graphs  
+#### 1.1 Disjoint Set Union  
 
-Some information about disjoint set unions
-
+Some information about disjoint set unions  
+  
 ```cpp
 struct DSU {
 	vector<int> e;
@@ -54,16 +56,15 @@ struct DSU {
 	}
 };
 
-```
-## 3. range
+```  
+## 2. range  
+#### 2.1 Segment Tree  
 
-#### 3.1 Segment Tree
-
-This is a segment tree
-
+This is a segment tree  
+  
 ```cpp
 struct SegTree {
 	int a;
 };
 
-```
+```  

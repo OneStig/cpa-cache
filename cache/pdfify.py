@@ -55,7 +55,10 @@ def tl_directory(directory):
 
 def to_md(folders):
     md_file = 'CPA Cache Reference Sheet'
-    md_file += '\n' + ('=' * len(md_file)) + '\n\n**Table of Contents**\n'
+    md_file += '  \n' + ('=' * len(md_file)) + '  \n  \n**Table of Contents**  \n'
+
+    with open('heading.md', 'r') as file:
+        md_file = file.read()
 
     toc = ''
     content = ''
@@ -64,18 +67,18 @@ def to_md(folders):
 
     for i in range(len(folders)):
         folder = folders[i]
-        toc += f'- [{i + 1}. {folder[0]}](#{i+1}-{folder[0]})\n'
-        content += f'## {i + 1}. {folder[0]}\n\n'
+        toc += f'- [{i + 1}. {folder[0]}](#{i+1}-{folder[0]})  \n'
+        content += f'## {i + 1}. {folder[0]}  \n'
         folder[1].sort()
 
         for j in range(len(folder[1])):
             topic = folder[1][j]
-            toc += f'\t- [{i + 1}.{j + 1} {topic[0]}](#{i + 1}{j + 1}-{topic[0].lower().strip().replace(" ", "-")})\n'
-            content += f'#### {i + 1}.{j + 1} {topic[0]}\n'
-            content += f'{topic[1]}\n\n'
-            content += f'```cpp\n{topic[2]}```\n'
+            toc += f'\t- [{i + 1}.{j + 1} {topic[0]}](#{i + 1}{j + 1}-{topic[0].lower().strip().replace(" ", "-")})  \n'
+            content += f'#### {i + 1}.{j + 1} {topic[0]}  \n'
+            content += f'{topic[1]}  \n  \n'
+            content += f'```cpp\n{topic[2]}```  \n'
     
-    return md_file + toc + content
+    return md_file + '\n  \n' + toc + '\n  \n' + content
 
 def create_mkfile(root_dir, content):
     with open(root_dir / Path('reference_sheet.md'), 'w') as mk_file:
@@ -91,6 +94,7 @@ create_mkfile(root_directory, to_md(dir_roots))
 input_md_file = 'reference_sheet.md'
 output_pdf_file = 'output_file.pdf'
 
-output = pypandoc.convert_file('reference_sheet.md', 'pdf', outputfile='reference_sheet.pdf')
+output = pypandoc.convert_file('reference_sheet.md', 'pdf', outputfile='reference_sheet.pdf', 
+                               extra_args=['-V', 'geometry:margin=1in', '--wrap=preserve'])
 
 print('See reference_sheet.pdf')
