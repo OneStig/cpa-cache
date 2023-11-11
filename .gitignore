@@ -1,7 +1,7 @@
-
 .DS_Store
 uci/45c/test.dSYM/Contents/Info.plist
 uci/45c/test.dSYM/Contents/Resources/DWARF/test
 .vscode/tasks.json
 *.prob
 cf/1844/.vscode/settings.json
+.obsidian
