@@ -4,6 +4,7 @@ cpa-cache (Competitive Programming Algorithms Cache) is my personal database of 
 ## Navigation
 - `/cache` - Database of useful datastructures, algorithms, and code snippets
     - `pdfify.py` - Compiles all subdirectories into a pdf (used as a reference sheet in ICPC style competitions)
+        - Requires [Pandoc](https://pandoc.org/installing.html)
     - Subdirectories will organize by topics, and each entry will contain both a code snippet and a corresponding markdown file with my explanations and thoughts.
 - `/contests` - Directory with my solutions to problems from
     - `/Codeforces` - Problems from codeforces

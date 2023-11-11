@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import pypandoc
 
 def bl_directory(directory):
     topic_name = os.path.basename(directory)
@@ -86,3 +87,10 @@ dir_roots = []
 tl_directory(root_directory)
 
 create_mkfile(root_directory, to_md(dir_roots))
+
+input_md_file = 'reference_sheet.md'
+output_pdf_file = 'output_file.pdf'
+
+output = pypandoc.convert_file('reference_sheet.md', 'pdf', outputfile='reference_sheet.pdf')
+
+print('See reference_sheet.pdf')
