@@ -1,12 +1,14 @@
 # cpa-cache
-cpa-cache (Competitive Programming Algorithms Cache) is my personal database of useful code for various contests, as well as my solutions to problems that I solve.
+cpa-cache (Competitive Programming Algorithms Cache) is an open source database of useful code for various contests that can be compiled into a reference sheet, or installed as a neovim plugin to yank snippets into the unnamed register.
 
-## Navigation
+## Usage
+- To compile everything into a reference sheet, run `pdfify.py`
+    - Requires [Pandoc](https://pandoc.org/installing.html)
+
+## Organization
 - `/cache` - Database of useful datastructures, algorithms, and code snippets
-    - `pdfify.py` - Compiles all subdirectories into a pdf (used as a reference sheet in ICPC style competitions)
-        - Requires [Pandoc](https://pandoc.org/installing.html)
     - Subdirectories will organize by topics, and each entry will contain both a code snippet and a corresponding markdown file with my explanations and thoughts.
-- `/contests` - Directory with my solutions to problems from
-    - `/Codeforces` - Problems from codeforces
-    - `/CSES` - Problems from CSES
-    - `/kattis` - Problems from kattis
+    - Each markdown file starts with a level 1 heading with the name of the topic, followed by a level 4 heading with the text `keywords`, after which follows a comma separated list of keywords that can be used to yank the associated snippet into neovim.
+
+## Contribution
+- Feel free to open a pull request and add to this collection

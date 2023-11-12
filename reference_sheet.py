@@ -57,8 +57,11 @@ def to_md(folders):
     md_file = 'CPA Cache Reference Sheet'
     md_file += '  \n' + ('=' * len(md_file)) + '  \n  \n**Table of Contents**  \n'
 
-    with open('heading.md', 'r') as file:
-        md_file = file.read()
+    try:
+        with open(root_directory / Path('heading.md'), 'r') as file:
+            md_file = file.read()
+    except:
+        pass
 
     toc = ''
     content = ''
@@ -80,21 +83,21 @@ def to_md(folders):
     
     return md_file + '\n  \n' + toc + '\n  \n' + content
 
-def create_mkfile(root_dir, content):
-    with open(root_dir / Path('reference_sheet.md'), 'w') as mk_file:
+def create_mkfile(content):
+    with open(Path(input_md_file), 'w') as mk_file:
         mk_file.write(content)
 
 # Convert to markdown
-root_directory = Path('.')
+root_directory = Path('./cache/')
+input_md_file = 'reference_sheet.md'
+output_pdf_file = 'reference_sheet.pdf'
+
 dir_roots = []
 tl_directory(root_directory)
 
-create_mkfile(root_directory, to_md(dir_roots))
+create_mkfile(to_md(dir_roots))
 
-input_md_file = 'reference_sheet.md'
-output_pdf_file = 'output_file.pdf'
-
-output = pypandoc.convert_file('reference_sheet.md', 'pdf', outputfile='reference_sheet.pdf', 
+output = pypandoc.convert_file(input_md_file, 'pdf', outputfile=output_pdf_file, 
                                extra_args=['-V', 'geometry:margin=1in', '--wrap=preserve'])
 
 print('See reference_sheet.pdf')
