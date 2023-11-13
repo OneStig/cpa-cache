@@ -1,9 +1,12 @@
 # cpa-cache
-cpa-cache (Competitive Programming Algorithms Cache) is an open source database of useful code for various contests that can be compiled into a reference sheet, or installed as a neovim plugin to yank snippets into the unnamed register.
+cpa-cache (Competitive Programming Algorithms Cache) is an open source database of useful code for various contests that can be compiled into a reference sheet, or installed as a neovim plugin to yank snippets into the unnamed register. Currently only has implementations for C++.
 
 ## Usage
 - To compile everything into a reference sheet, run `pdfify.py`
     - Requires [Pandoc](https://pandoc.org/installing.html)
+- neovim
+    - Install this plugin [`OneStig/cpa-cache`](https://github.com/OneStig/cpa-cache) with your favorite plugin manager
+    - Set `g:cpa#dir` to the cache directory of this repo
 
 ## Organization
 - `/cache` - Database of useful datastructures, algorithms, and code snippets
