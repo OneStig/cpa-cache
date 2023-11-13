@@ -2,4 +2,4 @@
 #### keyword
 dsu
 
-Some information about disjoint set unions
+Disjoint Set Union maintains an initially disconnected graph. You can then add edges between vertices and at any point query if two vertices are connected.
