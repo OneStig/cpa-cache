@@ -1,5 +1,5 @@
 # Segment Tree
-#### keywords:
-`segtree, segmenttree, st`
+#### keyword
+segtree
 
 This is a segment tree

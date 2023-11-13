@@ -1,63 +1,64 @@
+local M = {}
+
 local function read_file(file_path)
     local file = io.open(file_path, "r")
     if not file then return nil end
-    local content = file:read("*all")
+
+    local content = {}
+    local start_reading = false
+
+    for line in file:lines() do
+        if start_reading then
+            table.insert(content, line)
+        elseif line:find("/// begin") then
+            start_reading = true
+        end
+    end
+
     file:close()
-    return content
+    return table.concat(content, "\n")
 end
 
-local function find_file_by_keyword(keyword)
-    -- Base directory for cache
-    local base_dir = vim.fn.stdpath('config') .. '/cache/'
+local function load_snippets()
+    local snippets = {}
+    local base_dir = vim.g["cpa#dir"] or '~/cpa-cache/cache/'
+    base_dir = vim.fn.expand(base_dir)
 
-    -- List of all subdirectories in the cache
-    local topics = {"graphs", "range"}  -- Add more topics as needed
-
-    for _, topic in ipairs(topics) do
-        local topic_dir = base_dir .. topic .. '/'
-
-        -- Iterate through each topic's subdirectories
-        for file in io.popen('ls "'..topic_dir..'"'):lines() do
-            local md_file = topic_dir .. file .. '/' .. file .. '.md'
-            local md_content = read_file(md_file)
-
-            if md_content then
-                -- Check if the keyword exists in the markdown file
-                for line in md_content:gmatch("[^\r\n]+") do
-                    if line:find("#### keywords") then
-                        for kw in line:gmatch("%S+") do
-                            if kw == keyword then
-                                return topic_dir .. file .. '/' .. file .. '.h'
-                            end
-                        end
-                    end
+    local scan_dir
+    scan_dir = function(dir)
+        local entries = vim.fn.readdir(dir)
+        for _, entry in ipairs(entries) do
+            local full_path = dir .. '/' .. entry
+            if vim.fn.isdirectory(full_path) == 0 then
+                if entry:match("%.h$") then
+                    local keyword = entry:gsub("%.h$", "")
+                    snippets[keyword] = read_file(full_path)
                 end
+            else
+                scan_dir(full_path)
             end
         end
     end
 
-    return nil
+    scan_dir(base_dir)
+    return snippets
 end
 
-local function cpa_command(keyword)
-    local file_path = find_file_by_keyword(keyword)
-    if not file_path then
-        print("Keyword not found: " .. keyword)
-        return
-    end
+local snippets = load_snippets()
 
-    local content = read_file(file_path)
-    if not content then
-        print("Failed to read file: " .. file_path)
-        return
+local function cpa_command(args)
+    local keyword = args.args
+    local snippet = snippets[keyword]
+    if snippet then
+        vim.fn.setreg('"', snippet)
+        print("Snippet for '" .. keyword .. "' copied to register.")
+    else
+        print("Snippet not found for: " .. keyword)
     end
-
-    -- Set content to unnamed register
-    vim.fn.setreg('"', content)
 end
 
--- Register the command
-vim.api.nvim_create_user_command('Cpa', function(input)
-    cpa_command(input.args)
-end, { nargs = 1 })
+vim.api.nvim_create_user_command('Cpa', cpa_command, { nargs = 1 })
+
+M.load_snippets = load_snippets
+return M
 

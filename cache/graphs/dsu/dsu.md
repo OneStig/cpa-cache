@@ -1,5 +1,5 @@
 # Disjoint Set Union
-#### keywords:
-`dsu, uf, disjointsetunion, unionfind`
+#### keyword
+dsu
 
 Some information about disjoint set unions
