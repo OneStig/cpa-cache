@@ -18,7 +18,7 @@ def bl_directory(directory):
                             topic_name = cur_md.split('\n')[0].strip()[1:].strip()
                             cur_md = '\n'.join(cur_md.splitlines()[1:])
                         
-                elif file.suffix == '.h':
+                elif file.suffix == '.hpp':
                     with open(file, 'r') as file:
                         raw_code = file.read()
                         

@@ -30,8 +30,8 @@ local function load_snippets()
         for _, entry in ipairs(entries) do
             local full_path = dir .. '/' .. entry
             if vim.fn.isdirectory(full_path) == 0 then
-                if entry:match("%.h$") then
-                    local keyword = entry:gsub("%.h$", "")
+                if entry:match("%.hpp$") then
+                    local keyword = entry:gsub("%.hpp$", "")
                     snippets[keyword] = read_file(full_path)
                 end
             else
