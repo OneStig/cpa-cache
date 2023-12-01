@@ -3,6 +3,7 @@
 using namespace std;
 
 /// begin
+
 struct DSU {
 	vector<int> e;
 
@@ -22,3 +23,4 @@ struct DSU {
 		return true;
 	}
 };
+

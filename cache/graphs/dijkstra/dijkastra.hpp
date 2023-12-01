@@ -2,6 +2,7 @@
 using namespace std;
 
 /// begin
+
 struct Dijkstra {
 	using Cost = long long;
 	using T = pair<int, Cost>;
@@ -35,3 +36,4 @@ struct Dijkstra {
 		}
 	}
 };
+

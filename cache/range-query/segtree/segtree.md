@@ -1,3 +1,2 @@
 # Segment Tree
-#### keyword
-segtree
+#### :Cpa **segtree**
