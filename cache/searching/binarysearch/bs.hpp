@@ -1,7 +1,7 @@
 int n, x;
 int array[1];
 
-///begin
+/// begin
 int l = 0, r = n - 1;
 while (l <= r) {
 	int k = (r + l) / 2;
